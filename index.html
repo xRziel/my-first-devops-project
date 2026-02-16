@@ -2,190 +2,136 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dragon & Castle</title>
-
+<title>Cool Dragon</title>
 <style>
-body {
-  margin: 0;
-  height: 100vh;
-  overflow: hidden;
-  background: linear-gradient(to top, #0f2027, #203a43, #2c5364);
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(#1a1a1a,#000);
 }
 
-/* พระจันทร์ */
-.moon {
-  position: absolute;
-  top: 60px;
-  right: 100px;
-  width: 120px;
-  height: 120px;
-  background: #f5f3ce;
-  border-radius: 50%;
-  box-shadow: 0 0 40px #fff;
+/* ตัวมังกร */
+.dragon{
+  position:relative;
+  width:350px;
+  height:220px;
+  animation:float 4s ease-in-out infinite;
 }
 
-/* ปราสาท */
-.castle {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 500px;
-  height: 300px;
+/* ลำตัว */
+.body{
+  position:absolute;
+  width:220px;
+  height:90px;
+  background:#8e0000;
+  border-radius:50px;
+  top:90px;
+  left:80px;
 }
 
-.base {
-  position: absolute;
-  bottom: 0;
-  width: 500px;
-  height: 180px;
-  background: #2c3e50;
+/* หัว */
+.head{
+  position:absolute;
+  width:100px;
+  height:70px;
+  background:#b30000;
+  border-radius:60% 40% 50% 50%;
+  top:70px;
+  left:0;
 }
 
-.tower {
-  position: absolute;
-  bottom: 180px;
-  width: 100px;
-  height: 160px;
-  background: #34495e;
+/* เขา */
+.horn{
+  position:absolute;
+  width:20px;
+  height:40px;
+  background:#fff;
+  top:-30px;
+  left:20px;
+  transform:rotate(-20deg);
+  clip-path:polygon(50% 0%, 0% 100%, 100% 100%);
 }
 
-.tower.left { left: 40px; }
-.tower.right { right: 40px; }
-
-.roof {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-left: 60px solid transparent;
-  border-right: 60px solid transparent;
-  border-bottom: 100px solid #8e44ad;
-  top: -100px;
-  left: -10px;
+/* ตา */
+.eye{
+  position:absolute;
+  width:12px;
+  height:12px;
+  background:yellow;
+  border-radius:50%;
+  top:20px;
+  left:60px;
 }
 
-.window {
-  position: absolute;
-  width: 25px;
-  height: 40px;
-  background: yellow;
-  border-radius: 10px;
-  top: 60px;
-  left: 37px;
-  box-shadow: 0 0 20px yellow;
-  animation: glow 2s infinite alternate;
+/* ปีก */
+.wing{
+  position:absolute;
+  width:140px;
+  height:120px;
+  background:#600000;
+  top:10px;
+  left:130px;
+  clip-path:polygon(0% 100%, 20% 0%, 60% 40%, 100% 0%, 100% 100%);
+  animation:flap 1s infinite alternate;
 }
 
-@keyframes glow {
-  from { opacity: 0.6; }
-  to { opacity: 1; }
+/* หาง */
+.tail{
+  position:absolute;
+  width:150px;
+  height:20px;
+  background:#b30000;
+  top:120px;
+  left:250px;
+  border-radius:20px;
+  transform:rotate(20deg);
 }
 
-/* ===== มังกร ===== */
-
-.dragon {
-  position: absolute;
-  top: 150px;
-  left: -200px;
-  width: 200px;
-  height: 100px;
-  animation: fly 12s linear infinite;
+/* ไฟ */
+.fire{
+  position:absolute;
+  width:40px;
+  height:20px;
+  background:orange;
+  top:100px;
+  left:-40px;
+  clip-path:polygon(0% 50%, 50% 0%, 100% 50%, 50% 100%);
+  animation:fire 0.4s infinite alternate;
 }
 
-.dragon-body {
-  position: absolute;
-  width: 120px;
-  height: 50px;
-  background: #8e0000;
-  border-radius: 50px;
-  top: 30px;
-  left: 40px;
+/* Animations */
+@keyframes flap{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(-20deg);}
 }
 
-.dragon-head {
-  position: absolute;
-  width: 50px;
-  height: 40px;
-  background: #b30000;
-  border-radius: 50%;
-  top: 25px;
-  left: 0;
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-15px);}
+  100%{transform:translateY(0);}
 }
 
-.dragon-wing {
-  position: absolute;
-  width: 100px;
-  height: 80px;
-  background: #600000;
-  top: 0;
-  left: 60px;
-  clip-path: polygon(0% 100%, 30% 0%, 60% 40%, 100% 0%, 100% 100%);
-  animation: flap 0.6s infinite alternate;
-}
-
-.fire {
-  position: absolute;
-  width: 30px;
-  height: 15px;
-  background: orange;
-  top: 40px;
-  left: -30px;
-  clip-path: polygon(0% 50%, 50% 0%, 100% 50%, 50% 100%);
-  animation: fire 0.3s infinite alternate;
-}
-
-@keyframes flap {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-20deg); }
-}
-
-@keyframes fly {
-  from { left: -200px; }
-  to { left: 110%; }
-}
-
-@keyframes fire {
-  from { transform: scale(1); background: orange; }
-  to { transform: scale(1.3); background: red; }
-}
-
-.ground {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
-  background: #145214;
+@keyframes fire{
+  from{transform:scale(1); background:orange;}
+  to{transform:scale(1.3); background:red;}
 }
 </style>
 </head>
-
 <body>
 
-<div class="moon"></div>
-
-<div class="castle">
-  <div class="base"></div>
-
-  <div class="tower left">
-    <div class="roof"></div>
-    <div class="window"></div>
-  </div>
-
-  <div class="tower right">
-    <div class="roof"></div>
-    <div class="window"></div>
-  </div>
-</div>
-
 <div class="dragon">
-  <div class="dragon-wing"></div>
-  <div class="dragon-body"></div>
-  <div class="dragon-head"></div>
+  <div class="wing"></div>
+  <div class="body"></div>
+  <div class="head">
+    <div class="horn"></div>
+    <div class="eye"></div>
+  </div>
+  <div class="tail"></div>
   <div class="fire"></div>
 </div>
-
-<div class="ground"></div>
 
 </body>
 </html>
