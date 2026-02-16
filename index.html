@@ -2,69 +2,78 @@
 <html lang="th">
 <head>
 <meta charset="UTF-8">
-<title>CSS Flower</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flower Animation</title>
+
 <style>
-  body {
-    background: #f0f8ff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom, #87ceeb, #e0f7ff);
+  overflow: hidden;
+  font-family: sans-serif;
+}
 
-  .flower {
-    position: relative;
-    width: 200px;
-    height: 200px;
-  }
+.flower {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  animation: rotate 10s linear infinite;
+}
 
-  /* กลีบดอก */
-  .petal {
-    position: absolute;
-    width: 80px;
-    height: 80px;
-    background: pink;
-    border-radius: 50%;
-    top: 60px;
-    left: 60px;
-    transform-origin: 40px 40px;
-  }
+.petal {
+  position: absolute;
+  width: 60px;
+  height: 100px;
+  background: pink;
+  border-radius: 50%;
+  top: 25px;
+  left: 45px;
+  transform-origin: center bottom;
+}
 
-  /* หมุนกลีบ */
-  .petal:nth-child(1) { transform: rotate(0deg) translateY(-60px); }
-  .petal:nth-child(2) { transform: rotate(45deg) translateY(-60px); }
-  .petal:nth-child(3) { transform: rotate(90deg) translateY(-60px); }
-  .petal:nth-child(4) { transform: rotate(135deg) translateY(-60px); }
-  .petal:nth-child(5) { transform: rotate(180deg) translateY(-60px); }
-  .petal:nth-child(6) { transform: rotate(225deg) translateY(-60px); }
-  .petal:nth-child(7) { transform: rotate(270deg) translateY(-60px); }
-  .petal:nth-child(8) { transform: rotate(315deg) translateY(-60px); }
+.petal:nth-child(1) { transform: rotate(0deg); }
+.petal:nth-child(2) { transform: rotate(45deg); }
+.petal:nth-child(3) { transform: rotate(90deg); }
+.petal:nth-child(4) { transform: rotate(135deg); }
+.petal:nth-child(5) { transform: rotate(180deg); }
+.petal:nth-child(6) { transform: rotate(225deg); }
+.petal:nth-child(7) { transform: rotate(270deg); }
+.petal:nth-child(8) { transform: rotate(315deg); }
 
-  /* เกสรกลาง */
-  .center {
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    background: gold;
-    border-radius: 50%;
-    top: 65px;
-    left: 65px;
-  }
+.center {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: gold;
+  border-radius: 50%;
+  top: 45px;
+  left: 45px;
+  z-index: 2;
+}
 
-  /* ก้านดอก */
-  .stem {
-    position: absolute;
-    width: 10px;
-    height: 150px;
-    background: green;
-    top: 200px;
-    left: 95px;
-  }
+.stem {
+  position: absolute;
+  width: 10px;
+  height: 200px;
+  background: green;
+  top: 120px;
+  left: 70px;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
 </style>
 </head>
+
 <body>
 
-<div class="flower">
+<div class="flower" id="flower">
   <div class="petal"></div>
   <div class="petal"></div>
   <div class="petal"></div>
@@ -76,6 +85,16 @@
   <div class="center"></div>
   <div class="stem"></div>
 </div>
+
+<script>
+const flower = document.getElementById("flower");
+
+document.addEventListener("mousemove", (e) => {
+  let x = (window.innerWidth / 2 - e.pageX) / 20;
+  let y = (window.innerHeight / 2 - e.pageY) / 20;
+  flower.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
+});
+</script>
 
 </body>
 </html>
